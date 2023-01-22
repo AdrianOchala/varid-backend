@@ -17,7 +17,9 @@ class CartFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'total_price'    => 200, 
+            'total_amount'   => 2,
+            'cart_status_id' => $this->faker->numberBetween(1, 3)
         ];
     }
 }
