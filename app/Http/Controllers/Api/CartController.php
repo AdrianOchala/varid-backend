@@ -35,4 +35,16 @@ class CartController extends Controller
     {
         return $this->cart->allCarts();
     }
+    
+    /**
+     * Create empty cart with status "new".
+     *
+     * @return Collection
+     */
+    public function create()
+    {
+        return $this->cart->createEmpty();
+    }
+
+
 }

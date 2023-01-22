@@ -29,6 +29,8 @@ Route::controller(ProductController::class)->group(function () {
 Route::controller(CartController::class)->group(function () {
     Route::prefix('carts')->group(function() {
         Route::get('/', 'getAll');
+        Route::get('/empty', 'create');
+
     });
 });
 
