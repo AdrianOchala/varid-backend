@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\CartController;
 use App\Http\Controllers\Api\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -18,12 +19,20 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::controller(ProductController::class)->group(function () {
-    Route::prefix('product')->group(function() {
+    Route::prefix('products')->group(function() {
         Route::get('/', 'getAvailable');
         Route::post('/', 'store');
         Route::put('/{ID}', 'update');
     });
 });
+
+Route::controller(CartController::class)->group(function () {
+    Route::prefix('carts')->group(function() {
+        Route::get('/', 'getAll');
+    });
+});
+
+
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

@@ -18,12 +18,12 @@ class ProductController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @param  ProductRepository  $productsRepository
+     * @param  ProductRepository  $productRepository
      * @return void
      */
-    public function __construct(ProductRepositoryInterface $productsRepository)
+    public function __construct(ProductRepositoryInterface $productRepository)
     {
-        $this->product = $productsRepository;
+        $this->product = $productRepository;
     }
 
     /**
@@ -52,7 +52,7 @@ class ProductController extends Controller
      *
      * @param Integer $ID
      * @param \App\Http\Requests\ProductRequest $request
-     * @return Object
+     * @return Boolean
      */
     public function update($ID, ProductRequest $request)
     {
