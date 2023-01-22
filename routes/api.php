@@ -32,7 +32,7 @@ Route::controller(CartController::class)->group(function () {
         Route::get('/', 'getAll');
         Route::get('/empty', 'create');
         Route::post('/{ID}', 'store')->middleware('checkCartStatus:' . CartStatus::NEW);
-
+        Route::get('/{ID}/process', 'process');
     });
 });
 

@@ -57,5 +57,8 @@ class CartController extends Controller
         return $this->cart->store($ID, json_decode($request->products));
     }
 
-
+    public function process($ID)
+    {
+        return $this->cart->process($ID);
+    }
 }
