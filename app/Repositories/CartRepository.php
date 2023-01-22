@@ -9,6 +9,6 @@ class CartRepository implements CartRepositoryInterface
 {
     public function allCarts()
     {
-        return Cart::with('products')->get();
+        return Cart::with(['products', 'status'])->get();
     }
 }

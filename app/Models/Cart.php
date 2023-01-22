@@ -14,4 +14,9 @@ class Cart extends Model
     {
         return $this->belongsToMany(Product::class)->withPivot('price', 'amount');
     }
+
+    public function status()
+    {
+        return $this->hasOne(CartStatus::class, 'id', 'cart_status_id');
+    }
 }
