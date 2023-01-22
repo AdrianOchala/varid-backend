@@ -1,5 +1,6 @@
 <?php
 
+use App\Constants\CartStatus;
 use App\Http\Controllers\Api\CartController;
 use App\Http\Controllers\Api\ProductController;
 use Illuminate\Http\Request;
@@ -30,6 +31,7 @@ Route::controller(CartController::class)->group(function () {
     Route::prefix('carts')->group(function() {
         Route::get('/', 'getAll');
         Route::get('/empty', 'create');
+        Route::post('/{ID}', 'store')->middleware('checkCartStatus:' . CartStatus::NEW);
 
     });
 });
