@@ -8,4 +8,5 @@ Interface CartRepositoryInterface{
     public function store($ID, $products);
     public function get($ID);
     public function process($ID);
+    public function destroy($ID);
 }

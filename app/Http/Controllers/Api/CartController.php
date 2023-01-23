@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\Interfaces\CartRepositoryInterface;
-use App\Http\Requests\CartRequest;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -49,16 +48,31 @@ class CartController extends Controller
     
     /**
      * Add products to cart.
-     *
-     * @return Collection
+     * @param 
+     * @return Boolean
      */
     public function store($ID, Request $request)
     {   
         return $this->cart->store($ID, json_decode($request->products));
     }
 
+    /**
+     * Start cart processing procedure.
+     *
+     * @return Boolean
+     */
     public function process($ID)
     {
         return $this->cart->process($ID);
+    }
+    
+    /**
+     * Delete cart.
+     *
+     * @return Boolean
+     */
+    public function destroy($ID)
+    {
+        return $this->cart->destroy($ID);
     }
 }

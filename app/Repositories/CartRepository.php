@@ -44,7 +44,7 @@ class CartRepository implements CartRepositoryInterface
             return true;
         } catch (\Throwable $th) {
             DB::rollBack();
-            return response()->json(['error' => 'Error in adding products to cart!']);
+            return response()->json(['error' => 'Error in adding products to cart! ' . $th->getMessage()]);
         }
     }
 
@@ -57,10 +57,27 @@ class CartRepository implements CartRepositoryInterface
                         
         if ($validCart) {
             $cart = Cart::find($ID);
-            $cart->update(['cart_status_id' => CartStatus::PROCESSED]);
             ChangeCartStatusToCompleted::dispatch($cart);
+            return $cart->update(['cart_status_id' => CartStatus::PROCESSED]);
         } else {
             return response()->json(['error' => 'Cannot process chosen cart!']);
+        }
+    }
+
+    public function destroy($ID)
+    {
+        DB::beginTransaction();
+        try {
+            $cart = Cart::find($ID);
+            foreach ($cart->products as $product) {
+                $product->increment('stockeada', $product->pivot->amount);
+            }
+            DB::commit();
+            return $cart->delete();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return response()->json(['error' => 'Error in deleting cart! ' . $th->getMessage()]);
+
         }
     }
 }
