@@ -28,6 +28,8 @@ git clone https://github.com/AdrianOchala/varid-backend.git
 composer install
 ```
 
+### Run database environment like xampp 
+
 ### Run migration and seeders for database
 ```
 php artisan migrate:fresh --seed
