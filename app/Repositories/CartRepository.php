@@ -70,7 +70,7 @@ class CartRepository implements CartRepositoryInterface
         try {
             $cart = Cart::find($ID);
             foreach ($cart->products as $product) {
-                $product->increment('stockeada', $product->pivot->amount);
+                $product->increment('stock', $product->pivot->amount);
             }
             DB::commit();
             return $cart->delete();
